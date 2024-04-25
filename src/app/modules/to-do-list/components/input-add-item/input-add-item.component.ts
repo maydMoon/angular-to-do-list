@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, Input, ViewChild, inject} from '@angular/core';
 
 // Interface
-import { IListItems } from '../../../interface/iListItems.interface';
+import { IListItems } from '../../../interface/IListItems.iterface';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -9,12 +9,12 @@ import { NgClass } from '@angular/common';
   standalone: true,
   imports: [NgClass],
   templateUrl: './input-add-item.component.html',
-  styleUrl: './input-add-item.component.scss'
+  styleUrl: './input-add-item.component.scss',
 })
 export class InputAddItemComponent {
   #cdr = inject(ChangeDetectorRef);
 
-  @ViewChild("inputText") public inputText!: ElementRef;
+  @ViewChild('inputText') public inputText!: ElementRef;
 
   @Input({ required: true }) public inputListItems: IListItems[] = [];
 
@@ -30,9 +30,9 @@ export class InputAddItemComponent {
 
       this.outputAddListItem.emit({
         id,
-        checked:false,
-        value
-      })
+        checked: false,
+        value,
+      });
 
       return this.inputText.nativeElement.focus();
     }

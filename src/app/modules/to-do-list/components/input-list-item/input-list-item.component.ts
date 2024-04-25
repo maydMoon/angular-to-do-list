@@ -1,16 +1,14 @@
 import { Component, EventEmitter, Input, Output} from '@angular/core';
 
 // Interface
-import { IListItems } from '../../../interface/iListItems.interface';
-
+import { IListItems } from '../../../interface/IListItems.iterface';
 @Component({
   selector: 'app-input-list-item',
   standalone: true,
   imports: [],
   templateUrl: './input-list-item.component.html',
-  styleUrl: './input-list-item.component.scss'
+  styleUrl: './input-list-item.component.scss',
 })
-
 export class InputListItemComponent {
   @Input({ required: true }) public inputListItems: IListItems[] = [];
 
@@ -30,8 +28,8 @@ export class InputListItemComponent {
     return this.outputUpdateItemText.emit({ id, value });
   }
 
-  @Output() public outputDeleteItemText = new EventEmitter<string>();
-  public deleteItemText(id: string) {
-    return this.outputDeleteItemText.emit(id);
+  @Output() public outputDeleteItem = new EventEmitter<string>();
+  public deleteItem(id: string) {
+    return this.outputDeleteItem.emit(id);
   }
 }
