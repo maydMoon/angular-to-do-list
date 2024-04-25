@@ -11,10 +11,9 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: rgba(82, 80, 80, 0.322);
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
   text-align: center;
 }
 
@@ -27,11 +26,11 @@ button {
 }
 
 button.confirm {
-  background-color: #4caf50; /* Verde */
+  background-color: var(--primary);
   color: white;
 }
 
 button.cancel {
-  background-color: #f44336; /* Vermelho */
+  background-color: var(--red);
   color: white;
 }

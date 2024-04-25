@@ -1,7 +1,7 @@
 <div *ngIf="isOpen" class="modal">
   <div class="modal-content">
     <p>{{ confirmationMessage }}</p>
-    <button (click)="confirm()">Confirmar</button>
-    <button (click)="closeModal()">Cancelar</button>
+    <button class="confirm" (click)="confirm()">Confirmar</button>
+    <button class="cancel" (click)="closeModal()">Cancelar</button>
   </div>
 </div>
