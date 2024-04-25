@@ -30,27 +30,51 @@ export class ListComponent {
     return this.#setListItems.set(this.#parseItems());
   }
 
-  public listItemsStage(value: 'pending' | 'completed'){
+  public listItemsStage(value: 'pending' | 'completed') {
     return this.getListItems().filter((res: IListItems) => {
-      if (value === 'pending'){
-        return !res.checked
-      }
-      if (value === 'completed'){
+      if (value === 'pending') {
         return !res.checked;
       }
+
+      if (value === 'completed') {
+        return res.checked;
+      }
+
       return res;
-    })
+    });
   }
 
   public updateItemCheckbox(newItem: { id: string; checked: boolean }) {
     this.#setListItems.update((oldValue: IListItems[]) => {
       oldValue.filter((res) => {
-        if(res.id === newItem.id){
+        if (res.id === newItem.id) {
           res.checked = newItem.checked;
           return res;
         }
+
         return res;
       });
+
+      return oldValue;
+    });
+
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItems())
+    );
+  }
+
+  public updateItemText(newItem: { id: string, value: string}){
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      oldValue.filter((res) => {
+        if(res.id === newItem.id){
+          res.value = newItem.value;
+          return res;
+        }
+
+        return res;
+      });
+
         return oldValue;
       });
 
