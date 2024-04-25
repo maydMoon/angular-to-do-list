@@ -6,10 +6,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './confirm-modal.component.html',
-  styleUrl: './confirm-modal.component.scss'
+  styleUrl: './confirm-modal.component.scss',
 })
 export class ConfirmModalComponent {
   @Input() isOpen: boolean = false;
+  @Input() confirmationMessage: string = '';
   @Output() confirmAction: EventEmitter<void> = new EventEmitter<void>();
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
 
@@ -21,5 +22,4 @@ export class ConfirmModalComponent {
   closeModal() {
     this.close.emit();
   }
-
 }

@@ -1,6 +1,6 @@
 <div *ngIf="isOpen" class="modal">
   <div class="modal-content">
-    <p>Tem certeza que deseja excluir todos os itens?</p>
+    <p>{{ confirmationMessage }}</p>
     <button (click)="confirm()">Confirmar</button>
     <button (click)="closeModal()">Cancelar</button>
   </div>

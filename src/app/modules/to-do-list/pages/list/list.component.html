@@ -1,58 +1,58 @@
 @if(!getListItems().length){
-  <div class="container">
-    <img
-      src="assets/img/checklist-image.svg"
-      alt="Sua lista está vazia - imagem ilustrativa"
-      loading="eager"
-    />
+<div class="container">
+  <img
+    src="assets/img/checklist-image.svg"
+    alt="Sua lista está vazia - imagem ilustrativa"
+    loading="eager"
+  />
 
   @if(addItem()){
-    <button class="btn btn-primary" (click)="addItem.set(false)">
-      Crie uma lista de tarefas
-    </button>
-    } @else {
-    <app-input-add-item
-      [inputListItems]="getListItems()"
-      (outputAddListItem)="getInputAndAddItem($event)"
-    />
-    }
-  </div>
-} @else {
+  <button class="btn btn-primary" (click)="addItem.set(false)">
+    Crie uma lista de tarefas
+  </button>
+  } @else {
   <app-input-add-item
     [inputListItems]="getListItems()"
     (outputAddListItem)="getInputAndAddItem($event)"
   />
-
-  <main class="container">
-    @if(listItemsStage('pending').length){
-    <h2>Pendências</h2>
-    <app-input-list-item
-      [inputListItems]="listItemsStage('pending')"
-      (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
-      (outputUpdateItemText)="updateItemText($event)"
-      (outputDeleteItem)="deleteOneItem($event)"
-    />
-    }
-
-    @if(listItemsStage('completed').length){
-    <h2>Concluídas</h2>
-    <app-input-list-item
-      [inputListItems]="listItemsStage('completed')"
-      (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
-      (outputUpdateItemText)="updateItemText($event)"
-      (outputDeleteItem)="deleteOneItem($event)"
-    />
-    }
-  </main>
-
-  <footer>
-    <app-confirm-modal
-      [isOpen]="isModalOpen"
-      (confirmAction)="deleteAllItems()"
-    ></app-confirm-modal>
-
-    <button class="btn btn-danger" (click)="deleteItem()">
-      Deletar todos os Items
-    </button>
-  </footer>
   }
+</div>
+} @else {
+<app-input-add-item
+  [inputListItems]="getListItems()"
+  (outputAddListItem)="getInputAndAddItem($event)"
+/>
+
+<main class="container">
+  @if(listItemsStage('pending').length){
+  <h2>Pendências</h2>
+  <app-input-list-item
+    [inputListItems]="listItemsStage('pending')"
+    (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
+    (outputUpdateItemText)="updateItemText($event)"
+    (outputDeleteItem)="deleteItem($event)"
+  />
+  } @if(listItemsStage('completed').length){
+  <h2>Concluídas</h2>
+  <app-input-list-item
+    [inputListItems]="listItemsStage('completed')"
+    (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
+    (outputUpdateItemText)="updateItemText($event)"
+    (outputDeleteItem)="deleteItem($event)"
+  />
+  }
+</main>
+
+<footer>
+  <app-confirm-modal
+    [isOpen]="isModalOpen"
+    [confirmationMessage]="'Tem certeza que deseja excluir todos os itens?'"
+    (confirmAction)="deleteAllItems()"
+    (close)="closeModal()"
+  ></app-confirm-modal>
+
+  <button class="btn btn-danger" (click)="openModal()">
+    Deletar todos os Items
+  </button>
+</footer>
+}
