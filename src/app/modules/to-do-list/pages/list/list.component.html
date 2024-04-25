@@ -1,17 +1,24 @@
-<div class="container">
-  <img src ="assets/img/checklist-image.svg"
-  alt="Imagem Ilustrativa"
-  Loading="eager"
-  />
-
-  @if (addItem()) {
-    <button class="btn btn-primary" (click)="addItem.set(false)">
-      Crie uma Lista de Tarefas
-    </button>
-  } @else {
-    <app-input-add-item
-      [inputListItems]="getListItems()"
-      (outputAddListItem)="getInputAndAddItem($event)"
+@if(getListItems().length){
+  <div class="container">
+    <img src ="assets/img/checklist-image.svg"
+    alt="Imagem Ilustrativa"
+    Loading="eager"
     />
-  }
-</div>
+
+    @if (addItem()) {
+      <button class="btn btn-primary" (click)="addItem.set(false)">
+        Crie uma Lista de Tarefas
+      </button>
+    } @else {
+      <app-input-add-item
+        [inputListItems]="getListItems()"
+        (outputAddListItem)="getInputAndAddItem($event)"
+      />
+    }
+  </div>
+} @else {
+  <app-input-add-item
+    [inputListItems]="getListItems()"
+    (outputAddListItem)="getInputAndAddItem($event)"
+  />
+}

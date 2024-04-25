@@ -7,8 +7,18 @@
     <h1>Minha Lista</h1>
   }
 
-  <div>
-    <label class="input-label-text" for="inputValue">
+  <div
+    [ngClass]="{
+      'container': inputListItems.length
+    }"
+  >
+    <label
+      class="input-label-text"
+      for="inputValue"
+      [ngClass]="{
+        'remove-margin-bottom': !inputListItems.length
+      }"
+    >
       <input
         type="text"
         (keyup.enter)="focusAndAddItem(inputText.value)"
@@ -16,9 +26,6 @@
         id="inputValue"
         autofocus
         #inputText
-        [ngClass]="{
-          'remove-margin-bottom': inputListItems.length
-        }"
       />
 
       <button
@@ -26,6 +33,6 @@
         title="Adicionar um Novo Item"
         (click)="focusAndAddItem(inputText.value)"
       ></button>
-    </label>
+  </label>
   </div>
 </header>
