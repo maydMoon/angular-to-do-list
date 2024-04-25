@@ -30,7 +30,7 @@
       [inputListItems]="listItemsStage('pending')"
       (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
       (outputUpdateItemText)="updateItemText($event)"
-      (outputDeleteItem)="deleteItem($event)"
+      (outputDeleteItem)="deleteOneItem($event)"
     />
     }
 
@@ -40,13 +40,18 @@
       [inputListItems]="listItemsStage('completed')"
       (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
       (outputUpdateItemText)="updateItemText($event)"
-      (outputDeleteItem)="deleteItem($event)"
+      (outputDeleteItem)="deleteOneItem($event)"
     />
     }
   </main>
 
   <footer>
-    <button class="btn btn-danger" (click)="deleteAllItems()">
+    <app-confirm-modal
+      [isOpen]="isModalOpen"
+      (confirmAction)="deleteAllItems()"
+    ></app-confirm-modal>
+
+    <button class="btn btn-danger" (click)="deleteItem()">
       Deletar todos os Items
     </button>
   </footer>

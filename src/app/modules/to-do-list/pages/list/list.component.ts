@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 
 // Components
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
 import { InputListItemComponent } from '../../components/input-list-item/input-list-item.component';
+import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
 
 // Interface
 import { IListItems } from '../../../interface/IListItems.iterface';
@@ -13,7 +14,7 @@ import { ELocalStorage } from '../../enum/ELocalStorage.enum';
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [InputAddItemComponent, InputListItemComponent],
+  imports: [ConfirmModalComponent, InputAddItemComponent, InputListItemComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -91,11 +92,16 @@ export class ListComponent {
     return this.#updateLocalStorage();
   }
 
-  public deleteItem(id: string){
+  isModalOpen: boolean = false;
+
+  public deleteItem() {
+    this.isModalOpen = true;
+  }
+
+  public deleteOneItem(id: string) {
     this.#setListItems.update((oldValue: IListItems[]) => {
       return oldValue.filter((res) => res.id !== id);
     });
-
     return this.#updateLocalStorage();
   }
 
